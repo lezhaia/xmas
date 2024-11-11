@@ -8,7 +8,7 @@ $(document).ready(function () {
     // Sample event data - replace with your actual event data
     const events = {
         "11.09": [{
-                title: "Event 1",
+                title: "應英科啦啦隊 AED Cheerleader",
                 time: "16:00-17:00",
                 image: "images/b.png"
             },
