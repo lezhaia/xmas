@@ -1,0 +1,621 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #81A263;
+    overflow-x: hidden;
+}
+
+.header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 90;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+}
+
+.header-text {
+    color: white;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.header-text p {
+    margin: 5px 0;
+}
+
+.header-text .title {
+    font-size: 1.2em;
+    letter-spacing: 1px;
+}
+
+.header-right {
+    width: 120px;
+    /* Same as logo width for balance */
+}
+
+.menu-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.menu-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.menu-btn span {
+    width: 20px;
+    height: 2px;
+    background: white;
+    position: relative;
+    transition: 0.3s;
+}
+
+.menu-btn span:before,
+.menu-btn span:after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: white;
+    transition: 0.3s;
+}
+
+.menu-btn span:before {
+    top: -6px;
+}
+
+.menu-btn span:after {
+    top: 6px;
+}
+
+.menu-btn.active {
+    background: #B8001F;
+}
+
+.menu-btn.active span {
+    background: transparent;
+}
+
+.menu-btn.active span:before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.menu-btn.active span:after {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
+.menu-btn.active span:before,
+.menu-btn.active span:after {
+    background: white;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.hero .date {
+    font-size: 2em;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.hero .location {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.tags {
+    display: flex;
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.tag {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background: #507687;
+    padding: 100px 50px;
+    transition: 0.5s;
+    z-index: 99;
+    overflow-y: auto;
+    color: white;
+    display: flex;
+    /* Added */
+    justify-content: center;
+    /* Added */
+    align-items: center;
+    /* Added */
+}
+
+.menu.active {
+    left: 0;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    /* Changed to single column */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    /* Added */
+}
+
+.menu-section h2 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 2em;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+    /* Added */
+}
+
+.menu-section h2:hover {
+    transform: translateX(10px);
+}
+
+.menu-section ul {
+    list-style: none;
+    text-align: center;
+    /* Added */
+}
+
+.menu-section li {
+    margin-bottom: 15px;
+    opacity: 0.8;
+    transition: 0.3s;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.menu-section li:hover {
+    opacity: 1;
+    transform: translateX(10px);
+    color: white;
+}
+
+.footer {
+    position: static;
+    background: #FCFAEE;
+    padding: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* Changed to space-between */
+    align-items: center;
+    color: white;
+}
+
+.footer-logo {
+    max-width: 150px;
+    height: auto;
+}
+
+.footer-text {
+    color: black;
+    text-align: center;
+}
+
+.footer-text p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(184, 0, 31);
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.4rem;
+}
+
+.social-icon:hover {
+    background: rgba(75, 75, 75, 0.3);
+    transform: translateY(-2px);
+}
+
+.social-icon:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    /* 提示文字顯示在圖示上方 */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(184, 0, 31);
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    font-size: 14px;
+    margin-bottom: 10px;
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.social-icon::after {
+    opacity: 0;
+}
+
+.copyright {
+    text-align: center;
+    color: #999;
+    font-size: 0.8rem;
+    margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .info-square {
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu {
+        padding: 80px 20px;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .menu-section h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .menu-section li {
+        margin-bottom: 12px;
+    }
+
+    .footer {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer-left {
+        max-width: 150px;
+    }
+
+    .footer-logo {
+        max-width: 120px;
+    }
+
+    .footer-info p {
+        font-size: 0.9rem;
+    }
+
+    .footer-social {
+        margin-top: 10px;
+    }
+
+    .social-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin-top: 40px;
+    background: #B8001F;
+    min-height: 80vh;
+}
+
+.info-section {
+    color: white;
+    padding: 40px;
+}
+
+.info-title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.info-subtitle {
+    font-size: 1.2em;
+    opacity: 0.8;
+    margin-bottom: 30px;
+}
+
+.info-details {
+    line-height: 1.8;
+}
+
+.info-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.info-square {
+    top: 20%;
+    aspect-ratio: 1;
+    background: #FCFAEE;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.info-content {
+    color: #B8001F;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.info-content h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.info-content p {
+    font-size: 1.2em;
+    font-weight: lighter;
+}
+
+/* Hover effect */
+.info-square:hover {
+    background: #B8001F;
+}
+
+.info-square:hover .info-content {
+    color: #FCFAEE;
+    transform: translateY(0);
+}
+
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .image-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-square {
+    top: auto; /* 手機或小螢幕的上移量 */
+}
+
+    .info-content h3 {
+        font-size: 1.5em;
+    }
+
+    .info-content p {
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 1024px) {
+    .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .info-square {
+min-height: 300px;
+top: 15%; /* 桌面裝置的上移量 */
+}
+}
+
+/* Hover effect */
+.info-square:hover {
+    background: #B8001F;
+}
+
+.info-square:hover .info-content {
+    color: #FCFAEE;
+}
+
+.visual-element {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 87, 34, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-top:hover {
+    background: #ff5722;
+    transform: translateY(-5px);
+}
+
+.menu-section li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+    opacity: 0.8;
+    font-size: 1.2em;
+}
+
+/* Modify hover effect to maintain center alignment */
+.menu-section li a:hover {
+    opacity: 1;
+    transform: none;
+    /* Removed the X transform to keep centered */
+    color: rgba(255, 255, 255, 0.7);
+    /* Added subtle hover effect */
+}
+
+.menu-section li {
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+/* 移除原有的 li hover 效果，因為現在用 a 取代 */
+.menu-section li:hover {
+    transform: none;
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5em;
+    }
+
+    .hero .date {
+        font-size: 1.5em;
+    }
+
+    .tags {
+        flex-direction: column;
+    }
+
+    .menu {
+        padding: 80px 20px;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .image-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-content h3 {
+        font-size: 1.5em;
+    }
+
+    .info-content p {
+        font-size: 1em;
+    }
+
+
+}
